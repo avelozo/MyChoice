@@ -1,0 +1,68 @@
+package com.avelozo.voicerecognition.websocket
+
+import android.content.Context
+import android.media.MediaPlayer
+import android.net.Uri
+import android.util.Log
+import androidx.annotation.NonNull
+import com.avelozo.voicerecognition.repository.IAuthRepository
+import okhttp3.*
+import okio.ByteString
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.channels.FileChannel
+import java.util.*
+import java.util.concurrent.TimeUnit
+
+
+class WebSocketClient(private val mContext: Context, private val auth : IAuthRepository) : WebSocketListener() {
+
+    private var mSocket: WebSocket? = null
+    private var mPlayer: MediaPlayer? = null
+    private var WS_URL = "wss://ws.staging.helloaiden.com/audio"
+    private var sRecordedFileName=""
+
+    fun run() {
+        val client = OkHttpClient.Builder()
+            .readTimeout(0, TimeUnit.MILLISECONDS)
+            .build()
+
+        val request = Request
+            .Builder()
+            .header("Authorization",auth.getCurrent()?.jwtToken ?: "")
+            .header("Offline-Reference", UUID.randomUUID().toString())
+            .header("Transcribe-Only", "true")
+            .url(WS_URL)
+            .build()
+        client.newWebSocket(request, this)
+        client.dispatcher().executorService().shutdown()
+    }
+
+    override fun onOpen(webSocket: WebSocket?, response: Response?) {
+        Log.d(LOG_TAG, "onOpen: ")
+        mSocket = webSocket
+    }
+
+    fun sendAudio() {
+        var fileChannel: FileChannel? = null
+
+        try {
+            val f = File(sRecordedFileName)
+            fileChannel = FileInputStream(f).getChannel()
+
+            mSocket?.send(START)
+
+            sendAudioBytes(fileChannel)
+
+            mSocket?.send(END)
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            if (fileChannel != null) {
+                try {
+                    fileChannel.close()
+             
