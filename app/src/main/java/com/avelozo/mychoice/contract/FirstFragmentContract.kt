@@ -1,8 +1,7 @@
 package com.avelozo.mychoice.contract
 
 import com.avelozo.mychoice.model.Category
-import java.math.BigDecimal
-import java.util.ArrayList
+import kotlin.collections.ArrayList
 
 interface FirstFragmentContract {
     interface View : BaseView {

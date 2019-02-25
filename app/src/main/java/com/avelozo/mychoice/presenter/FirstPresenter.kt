@@ -1,13 +1,11 @@
 package com.avelozo.mychoice.presenter
 
-import android.util.Log
-import androidx.annotation.MainThread
 import com.avelozo.mychoice.contract.FirstFragmentContract
 import com.avelozo.mychoice.interactor.ICategoryInteractor
 import com.avelozo.mychoice.model.Category
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import java.util.ArrayList
+import java.util.*
 
 class FirstPresenter(var categoryInteractor: ICategoryInteractor) : FirstFragmentContract.Presenter() {
 

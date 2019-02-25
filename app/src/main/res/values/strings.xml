@@ -5,6 +5,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="interest">I\'m interested in:</string>
     <string name="category">Category</string>
+    <string name="dog_quote">A dog is the only thing on earth that loves you more than you love yourself</string>
+    <string name="more_details">See more details:</string>
+
+
+
 
 
 </resources>

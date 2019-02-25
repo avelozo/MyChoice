@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.avelozo.mychoice.R
 import com.avelozo.mychoice.model.Category
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestManager
 
 class CategoryAdapter(private val categories: ArrayList<Category>, private val onClick: (Category) -> Unit) :  RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -25,11 +24,9 @@ class CategoryAdapter(private val categories: ArrayList<Category>, private val o
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder as CategoryViewHolder
 
-
         Glide
             .with(holder.itemView)
             .load(categories[position].imageUrl)
-           // .centerCrop()
             .placeholder(R.drawable.dog_shadow)
             .into(holder.categoryImage)
 

@@ -4,12 +4,8 @@ import com.avelozo.mychoice.dao.ICategoryRepository
 import com.avelozo.mychoice.model.Category
 import com.avelozo.mychoice.request.IImageRequest
 import com.avelozo.mychoice.request.ImageReceiver
-import com.avelozo.mychoice.request.ImageRequest
-import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
-import java.lang.Exception
 
 class  CategoryInteractor(private var imageRequest: IImageRequest,
                           private var categoryRepository:  ICategoryRepository) : ICategoryInteractor {

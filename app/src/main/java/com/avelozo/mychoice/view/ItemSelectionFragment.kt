@@ -6,19 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
-import com.avelozo.mychoice.R
 
-import com.avelozo.mychoice.contract.FirstFragmentContract
-import com.avelozo.mychoice.model.Category
+import com.avelozo.mychoice.R
+import com.avelozo.mychoice.contract.ItemSelectionFragmentContract
+import com.avelozo.mychoice.model.Item
+import com.avelozo.mychoice.view.FragmentUtils.IMGURL
 import com.avelozo.mychoice.view.FragmentUtils.SEARCH
 import com.github.salomonbrys.kodein.instance
 import kotlinx.android.synthetic.main.fragment_first.*
 
+class ItemSelectionFragment : FragmentAbstract(), ItemSelectionFragmentContract.View {
 
-
-class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
-
-    private val presenter: FirstFragmentContract.Presenter by injector.instance()
+    private val presenter: ItemSelectionFragmentContract.Presenter by injector.instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,17 +29,22 @@ class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        lbl_interested_in.visibility = View.GONE
         presenter.attach(this)
-        presenter.onViewCreated()
 
+        val search = arguments?.getString(SEARCH)
+        search?.let {
+            presenter.getSelectedItems(it)
+        }
         }
 
 
-    override fun loadCategoriesRecycler( categories : ArrayList<Category>){
-        recyclerviewImages.adapter = CategoryAdapter(categories){
-            val fragment = ItemSelectionFragment()
+    override fun loadItemsRecycler(items: List<Item>) {
+        recyclerviewImages.adapter = ItemAdapter(items){
+            val fragment = ItemDetailFragment()
             val bundle = Bundle()
-            bundle.putString(SEARCH, it.name)
+            bundle.putString(SEARCH, it.category)
+            bundle.putString(IMGURL, it.imageUrl)
             fragment.arguments = bundle
             fragmentManager
                 ?.beginTransaction()
@@ -48,31 +52,18 @@ class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
                 ?.commit()
         }
 
-        val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                val viewType = recyclerviewImages.adapter?.getItemViewType(position)
-                return viewType ?: 0
-            }
-        }
-
         val layoutManager = GridLayoutManager(context, 3)
-        layoutManager.spanSizeLookup = spanSizeLookup
 
         recyclerviewImages.layoutManager = layoutManager
         recyclerviewImages.adapter?.notifyDataSetChanged()
     }
 
 
-    override fun showLoadCategoryError(){
-     Toast.makeText(context, "Could not load categories", Toast.LENGTH_LONG).show()
+    override fun showLoadItemError(){
+     Toast.makeText(context, "Could not load items", Toast.LENGTH_LONG).show()
     }
 }
 
-
-object FragmentUtils{
-    val SEARCH = "search"
-    val IMGURL = "imgurl"
-}
 
 
 

@@ -2,7 +2,6 @@ package com.avelozo.mychoice.interactor
 
 import com.avelozo.mychoice.model.Category
 import com.avelozo.mychoice.request.ImageReceiver
-import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
 

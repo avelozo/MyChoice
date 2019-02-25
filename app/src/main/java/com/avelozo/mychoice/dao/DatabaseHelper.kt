@@ -3,7 +3,6 @@ package com.avelozo.mychoice.dao
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.provider.BaseColumns
 
 private  val SQL_CREATE_ENTRIES =
     "CREATE TABLE ${DatabaseContract.CategoryEntry.CATEGORY_TABLE_NAME} (" +
