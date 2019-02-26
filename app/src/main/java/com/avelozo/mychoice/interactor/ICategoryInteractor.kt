@@ -11,4 +11,5 @@ interface ICategoryInteractor {
     fun getCategoryImage(search: String) : Observable<ImageReceiver>
     fun saveCategory(category: Category)
     fun initCategories(): Single<MutableList<Category>>
+    fun addItemClicked(category: Category)
 }

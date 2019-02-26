@@ -16,6 +16,9 @@ class  CategoryInteractor(private var imageRequest: IImageRequest,
         categoryRepository.insertCategory(category)
     }
 
+    override fun addItemClicked(category: Category){
+        categoryRepository.addItemClicked(category)
+    }
 
     override fun getCategoryImage(search: String) : Observable<ImageReceiver>{
         return imageRequest
@@ -30,7 +33,6 @@ class  CategoryInteractor(private var imageRequest: IImageRequest,
              Single.create { emitter ->
                 try {
                     emitter.onSuccess(categories)
-
                 } catch (e: Exception) {
                     emitter.onError(e)
                 }

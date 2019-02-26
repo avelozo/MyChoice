@@ -46,10 +46,7 @@ class ItemSelectionFragment : FragmentAbstract(), ItemSelectionFragmentContract.
             bundle.putString(SEARCH, it.category)
             bundle.putString(IMGURL, it.imageUrl)
             fragment.arguments = bundle
-            fragmentManager
-                ?.beginTransaction()
-                ?.replace(com.avelozo.mychoice.R.id.fragmentContainer, fragment)
-                ?.commit()
+            loadFragment(fragment)
         }
 
         val layoutManager = GridLayoutManager(context, 3)

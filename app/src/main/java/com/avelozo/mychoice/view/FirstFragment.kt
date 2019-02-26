@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.fragment_first.*
 class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
 
     private val presenter: FirstFragmentContract.Presenter by injector.instance()
+    private val GRID_QUANTITY = 3
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,14 +39,12 @@ class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
 
     override fun loadCategoriesRecycler( categories : ArrayList<Category>){
         recyclerviewImages.adapter = CategoryAdapter(categories){
+            presenter.addItemClicked(it)
             val fragment = ItemSelectionFragment()
             val bundle = Bundle()
             bundle.putString(SEARCH, it.name)
             fragment.arguments = bundle
-            fragmentManager
-                ?.beginTransaction()
-                ?.replace(com.avelozo.mychoice.R.id.fragmentContainer, fragment)
-                ?.commit()
+            loadFragment(fragment)
         }
 
         val spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -55,19 +54,17 @@ class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
             }
         }
 
-        val layoutManager = GridLayoutManager(context, 3)
+        val layoutManager = GridLayoutManager(context, GRID_QUANTITY)
         layoutManager.spanSizeLookup = spanSizeLookup
 
         recyclerviewImages.layoutManager = layoutManager
         recyclerviewImages.adapter?.notifyDataSetChanged()
     }
 
-
     override fun showLoadCategoryError(){
-     Toast.makeText(context, "Could not load categories", Toast.LENGTH_LONG).show()
+     Toast.makeText(context, getString(R.string.error_loading_category), Toast.LENGTH_LONG).show()
     }
 }
-
 
 object FragmentUtils{
     val SEARCH = "search"

@@ -6,4 +6,5 @@ interface ICategoryRepository {
 
     fun insertCategory(category: Category)
     fun getCategories(): MutableList<Category>
+    fun addItemClicked(category: Category)
 }

@@ -38,7 +38,7 @@ class CategoryAdapter(private val categories: ArrayList<Category>, private val o
     }
 
     override fun getItemViewType(position: Int): Int {
-        return categories[position].timesVisited +1
+        return categories[position].weight
     }
     inner class CategoryViewHolder(mView: View) : RecyclerView.ViewHolder(mView) {
         val categoryImage : ImageView = mView.findViewById(R.id.img_category)

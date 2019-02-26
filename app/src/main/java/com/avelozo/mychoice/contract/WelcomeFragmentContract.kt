@@ -1,18 +1,15 @@
 package com.avelozo.mychoice.contract
 
 import com.avelozo.mychoice.model.Category
-import kotlin.collections.ArrayList
 
-interface FirstFragmentContract {
+interface WelcomeFragmentContract {
     interface View : BaseView {
-
-        fun loadCategoriesRecycler( categories : ArrayList<Category>)
         fun showLoadCategoryError()
-
+        fun loadMostViewedCategory(category: Category)
+        fun setEvents()
     }
 
     abstract class Presenter : MvpPresenter<View>(){
         abstract fun onViewCreated()
-        abstract fun addItemClicked(category: Category)
     }
 }
