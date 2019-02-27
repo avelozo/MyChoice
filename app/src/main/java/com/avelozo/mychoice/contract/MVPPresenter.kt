@@ -2,7 +2,6 @@ package com.avelozo.mychoice.contract
 
 import io.reactivex.disposables.CompositeDisposable
 
-
 open class MvpPresenter<T : BaseView> : BasePresenter<T> {
 
     protected val disposables by lazy {

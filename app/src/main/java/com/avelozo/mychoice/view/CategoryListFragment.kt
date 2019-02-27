@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import com.avelozo.mychoice.R
 
-import com.avelozo.mychoice.contract.FirstFragmentContract
+import com.avelozo.mychoice.contract.CategoryListFragmentContract
 import com.avelozo.mychoice.model.Category
 import com.avelozo.mychoice.view.FragmentUtils.SEARCH
 import com.github.salomonbrys.kodein.instance
@@ -16,9 +16,9 @@ import kotlinx.android.synthetic.main.fragment_first.*
 
 
 
-class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
+class CategoryListFragment : FragmentAbstract(), CategoryListFragmentContract.View {
 
-    private val presenter: FirstFragmentContract.Presenter by injector.instance()
+    private val presenter: CategoryListFragmentContract.Presenter by injector.instance()
     private val GRID_QUANTITY = 3
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
 
 
     override fun loadCategoriesRecycler( categories : ArrayList<Category>){
-        recyclerviewImages.adapter = CategoryAdapter(categories){
+        recyclerviewImages?.adapter = CategoryAdapter(categories){
             presenter.addItemClicked(it)
             val fragment = ItemSelectionFragment()
             val bundle = Bundle()
@@ -57,8 +57,8 @@ class FirstFragment : FragmentAbstract(), FirstFragmentContract.View {
         val layoutManager = GridLayoutManager(context, GRID_QUANTITY)
         layoutManager.spanSizeLookup = spanSizeLookup
 
-        recyclerviewImages.layoutManager = layoutManager
-        recyclerviewImages.adapter?.notifyDataSetChanged()
+        recyclerviewImages?.layoutManager = layoutManager
+        recyclerviewImages?.adapter?.notifyDataSetChanged()
     }
 
     override fun showLoadCategoryError(){

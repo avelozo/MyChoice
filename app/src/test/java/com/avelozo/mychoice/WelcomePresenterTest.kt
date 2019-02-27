@@ -1,10 +1,8 @@
 package com.avelozo.mychoice
 
-import com.avelozo.mychoice.contract.FirstFragmentContract
 import com.avelozo.mychoice.contract.WelcomeFragmentContract
 import com.avelozo.mychoice.interactor.ICategoryInteractor
 import com.avelozo.mychoice.model.Category
-import com.avelozo.mychoice.presenter.FirstPresenter
 import com.avelozo.mychoice.presenter.WelcomePresenter
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Single
@@ -53,7 +51,6 @@ class WelcomePresenterTest {
         verify(view, times(1)).showLoadCategoryError()
 
     }
-
 
     fun getCategories() = mutableListOf(Category("Husky", "http://www.image.png", 1, 0))
 

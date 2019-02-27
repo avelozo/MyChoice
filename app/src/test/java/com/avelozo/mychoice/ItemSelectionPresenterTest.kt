@@ -1,12 +1,8 @@
 package com.avelozo.mychoice
 
-import com.avelozo.mychoice.contract.FirstFragmentContract
 import com.avelozo.mychoice.contract.ItemSelectionFragmentContract
-import com.avelozo.mychoice.interactor.ICategoryInteractor
 import com.avelozo.mychoice.interactor.IItemInteractor
-import com.avelozo.mychoice.model.Category
 import com.avelozo.mychoice.model.Item
-import com.avelozo.mychoice.presenter.FirstPresenter
 import com.avelozo.mychoice.presenter.ItemSelectionPresenter
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Single

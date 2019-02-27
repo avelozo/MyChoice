@@ -33,7 +33,7 @@ class WelcomeFragment : FragmentAbstract(), WelcomeFragmentContract.View{
 
     override fun setEvents(){
         btnShowCategories.setOnClickListener {
-            loadFragment(FirstFragment())
+            loadFragment(CategoryListFragment())
         }
 
     }

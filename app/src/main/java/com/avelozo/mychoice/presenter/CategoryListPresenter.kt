@@ -1,13 +1,13 @@
 package com.avelozo.mychoice.presenter
 
-import com.avelozo.mychoice.contract.FirstFragmentContract
+import com.avelozo.mychoice.contract.CategoryListFragmentContract
 import com.avelozo.mychoice.interactor.ICategoryInteractor
 import com.avelozo.mychoice.model.Category
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlin.collections.ArrayList
 
-class FirstPresenter(private var categoryInteractor: ICategoryInteractor) : FirstFragmentContract.Presenter() {
+class CategoryListPresenter(private var categoryInteractor: ICategoryInteractor) : CategoryListFragmentContract.Presenter() {
 
     val SMALL_COLUMN_WEIGHT = 1
     val MEDIUM_COLUMN_WEIGHT= 2

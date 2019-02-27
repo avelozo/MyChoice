@@ -13,8 +13,6 @@ import java.sql.Array
 
 class CategoryRepository( var dbHelper: DatabaseHelper) : ICategoryRepository {
 
-
-
     override fun insertCategory(category : Category){
 
         val db = dbHelper.writableDatabase
@@ -23,17 +21,16 @@ class CategoryRepository( var dbHelper: DatabaseHelper) : ICategoryRepository {
         values.put(COLUMN_NAME_CATEGORY_URL, category.imageUrl)
         values.put(COLUMN_NAME_CATEGORY_VISITS, category.timesVisited)
 
-
          db.insert(CATEGORY_TABLE_NAME, null, values)
 
-        db.close()
+         db.close()
 
     }
 
     override fun addItemClicked(category: Category){
-        val db = dbHelper.writableDatabase
-        val totalTimesVisited =  category.timesVisited +1
-        db.beginTransaction()
+            val db = dbHelper.writableDatabase
+            val totalTimesVisited =  category.timesVisited +1
+            db.beginTransaction()
         try {
 
             val values = ContentValues()
@@ -47,7 +44,7 @@ class CategoryRepository( var dbHelper: DatabaseHelper) : ICategoryRepository {
         } catch (e : Exception){
             Log.e("MyChoiceError",e.message)
         } finally {
-        db.endTransaction()
+            db.endTransaction()
         }
     }
 

@@ -40,7 +40,7 @@ class ItemSelectionFragment : FragmentAbstract(), ItemSelectionFragmentContract.
 
 
     override fun loadItemsRecycler(items: List<Item>) {
-        recyclerviewImages.adapter = ItemAdapter(items){
+        recyclerviewImages?.adapter = ItemAdapter(items){
             val fragment = ItemDetailFragment()
             val bundle = Bundle()
             bundle.putString(SEARCH, it.category)
@@ -51,8 +51,8 @@ class ItemSelectionFragment : FragmentAbstract(), ItemSelectionFragmentContract.
 
         val layoutManager = GridLayoutManager(context, 3)
 
-        recyclerviewImages.layoutManager = layoutManager
-        recyclerviewImages.adapter?.notifyDataSetChanged()
+        recyclerviewImages?.layoutManager = layoutManager
+        recyclerviewImages?.adapter?.notifyDataSetChanged()
     }
 
 

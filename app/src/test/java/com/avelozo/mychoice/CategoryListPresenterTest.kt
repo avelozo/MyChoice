@@ -1,34 +1,33 @@
 package com.avelozo.mychoice
 
-import com.avelozo.mychoice.contract.FirstFragmentContract
+import com.avelozo.mychoice.contract.CategoryListFragmentContract
 import com.avelozo.mychoice.interactor.ICategoryInteractor
 import com.avelozo.mychoice.model.Category
-import com.avelozo.mychoice.presenter.FirstPresenter
+import com.avelozo.mychoice.presenter.CategoryListPresenter
 import com.nhaarman.mockito_kotlin.*
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.ClassRule
 import org.junit.Test
 import java.lang.Exception
-import org.junit.*
 
-class FirstPresenterTest {
+class CategoryListPresenterTest {
     companion object {
         @ClassRule
         @JvmField
          val schedulers = RxImmediateSchedulerRule()
     }
 
-    lateinit var presenter: FirstFragmentContract.Presenter
+    lateinit var presenter: CategoryListFragmentContract.Presenter
 
     private val categoryInteractor: ICategoryInteractor = mock()
-    private val view: FirstFragmentContract.View = mock()
+    private val view: CategoryListFragmentContract.View = mock()
 
 
 
     @Before
     fun setUp() {
-        presenter = FirstPresenter(categoryInteractor)
+        presenter = CategoryListPresenter(categoryInteractor)
         presenter.attach(view)
     }
 

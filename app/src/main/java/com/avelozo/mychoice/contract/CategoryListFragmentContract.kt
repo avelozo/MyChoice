@@ -3,7 +3,7 @@ package com.avelozo.mychoice.contract
 import com.avelozo.mychoice.model.Category
 import kotlin.collections.ArrayList
 
-interface FirstFragmentContract {
+interface CategoryListFragmentContract {
     interface View : BaseView {
 
         fun loadCategoriesRecycler( categories : ArrayList<Category>)

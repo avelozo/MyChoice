@@ -12,8 +12,6 @@ class MainApplication : Application(), KodeinAware {
 
     override val kodein by Kodein.lazy {
         import(ApplicationModule().module)
-
-
     }
 
     override fun onCreate() {

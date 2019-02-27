@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(){
             editor.putBoolean(KEY_FIRST_TIME_USER, false)
             editor.apply()
 
-            FirstFragment()
+            CategoryListFragment()
         }else {
             WelcomeFragment()
         }
